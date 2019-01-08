@@ -67,6 +67,53 @@ class App extends Component {
   };
 
   render() {
+
+    let outResult = null;
+
+    if( this.state.showOutput){ 
+      outResult = 
+      (<div className="row col-md-12">
+        <table >
+          <thead>
+            <tr>
+              <th className="col-xs-3">Parameter</th>
+              <th className="col-xs-1"> </th>
+              <th className="col-xs-5">Values</th>
+              <th>
+              <img className="col-xs-3" alt="" src = {"http://openweathermap.org/img/w/"+this.state.weather[0].icon+".png"} />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="col-xs-3">Temperature</td>
+              <td className="col-xs-1"> </td>
+              <td className="col-xs-5">{Math.round((this.state.main.temp - 273.15)*100)/100 } C</td>
+              <td className="col-xs-3"> </td>
+            </tr>
+            <tr>
+              <td className="col-xs-3">Wind</td>
+              <td className="col-xs-1"> </td>
+              <td className="col-xs-5">{this.state.wind.speed}</td>
+              <td className="col-xs-3"> </td>
+            </tr>
+            <tr>
+              <td className="col-xs-3">Sky</td>
+              <td className="col-xs-1"> </td>
+              <td className="col-xs-5">{this.state.weather[0].main}</td>
+              <td className="col-xs-3"> </td>
+            </tr>
+            <tr>
+              <td className="col-xs-3">Humidity</td>
+              <td className="col-xs-1"> </td>
+              <td className="col-xs-5">{this.state.main.humidity} %</td>
+              <td className="col-xs-3"> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>)
+    }
+
     return (
       <div className="App-header">
         <header className="Allign-center row">
@@ -86,6 +133,7 @@ class App extends Component {
           <Buttons name="Clear" clicked={this.clearAll}></Buttons>
           <div className="col-md-4"></div>
         </div>
+        {outResult}
       </div>
     );
   }
