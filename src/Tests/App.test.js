@@ -4,6 +4,7 @@ import App from '../Components/App';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import InputBox from '../Components/inputBox';
+import Buttons from '../Components/Buttons';
 
 configure({ adapter: new Adapter() });
 
@@ -31,5 +32,18 @@ describe('<App />' , () => {
     wrapper.instance().longitudeChange({target : { value : "132"}});
     expect(wrapper.state().long).toEqual("132");
   });
-  
+
+  it('chcek if two buttons are avialable to click', () => { 
+    expect(wrapper.find(Buttons)).toHaveLength(1);
+  });
+
+  it('chcek if clearAll function is working as expected', () => {
+    wrapper.setState({
+      lat:'32'
+    }
+    )
+    wrapper.instance().clearAll();
+    expect(wrapper.state().lat).toEqual("");
+  });
+
 });
