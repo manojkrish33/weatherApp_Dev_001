@@ -5,6 +5,8 @@ import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import InputBox from '../Components/inputBox';
 import Buttons from '../Components/Buttons';
+import fetchPositive from '../__mocks__/fetchPositive';
+import fetchReject from '../__mocks__/fetchNegative';
 
 configure({ adapter: new Adapter() });
 
@@ -34,7 +36,7 @@ describe('<App />' , () => {
   });
 
   it('chcek if two buttons are avialable to click', () => { 
-    expect(wrapper.find(Buttons)).toHaveLength(1);
+    expect(wrapper.find(Buttons)).toHaveLength(2);
   });
 
   it('chcek if clearAll function is working as expected', () => {
@@ -44,6 +46,18 @@ describe('<App />' , () => {
     )
     wrapper.instance().clearAll();
     expect(wrapper.state().lat).toEqual("");
+  });
+
+  it('checks if openApi returns postive response', () => {
+    global.fetch = fetchPositive;
+    wrapper.instance().getWeather();
+    setTimeout(()=>{expect(wrapper.state().showOutput).toEqual(true)},1000);
+  });
+
+  it('checks if openApi returns negative response', () => {
+    global.fetch = fetchReject;
+    wrapper.instance().getWeather();
+    setTimeout(()=>{expect(wrapper.state().showOutput).toEqual(false)},1000);
   });
 
 });

@@ -46,6 +46,26 @@ class App extends Component {
     )
   };
 
+  getWeather = () =>{
+    fetch("http://api.openweathermap.org/data/2.5/weather?lat="+ this.state.lat +"&lon="+ this.state.long +"&APPID=208e7a419b466f5777abefb8f5594d48")
+    .then(results => {
+       return results.json();
+    }).then(data => {
+      if(data.cod === 200){
+        this.setState({
+          ...data,
+          showOutput : true
+        })
+      }else{
+        this.setState({
+          showOutput : false
+      })
+      }
+      
+      }
+    )
+  };
+
   render() {
     return (
       <div className="App-header">
@@ -61,7 +81,7 @@ class App extends Component {
         </div>
         <div  className="row margin-top-30px">
           <div className="col-md-5"></div>
-          <div className="col-md-1"></div>
+           <Buttons name="Check!" clicked={this.getWeather}></Buttons>
           <div className="col-md-1"></div>
           <Buttons name="Clear" clicked={this.clearAll}></Buttons>
           <div className="col-md-4"></div>
