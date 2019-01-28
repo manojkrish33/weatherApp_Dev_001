@@ -34,10 +34,19 @@ npm test
 ## This App consists of 
 
 ### _App Component
-   This will have functionality to handle the latitude and longitude inputs and display the weather updates.
+   This will render the Form component and once the user inputs Latitude and Longitude it will render Result component.
 
 ### _InputBox Component
-   This will have functionality to have Input latitude and longitude values.
+   This will have functionality to have Input Latitude and Longitude values.
    
-### _Buttons Component
-   This will have functionality to have Input latitude and longitude values.
+### _Button Component
+   This will have functionality to have Input Latitude and Longitude values.
+
+### _Form Component
+   This component will be rendering the input boxes for entering Latitude, Longitude and buttons to get weather details or clear the intered data.
+
+### _Result Component
+   This componenet renders the reuslt row components to show the weather details.
+
+### _ResultRow Component
+   This componenet returns a row with the details of each parameter like temperature, wind speed, sky apperance and humidity.
